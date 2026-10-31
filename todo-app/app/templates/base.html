@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerenciador de Tarefas - PIT II</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>📋 Gerenciador de Tarefas</h1>
+        <p>Projeto Integrador Transdisciplinar em Engenharia de Software II</p>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for categoria, mensagem in messages %}
+                    <div class="alerta alerta-{{ categoria }}">{{ mensagem }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Projeto acadêmico &middot; Cruzeiro do Sul Virtual</p>
+    </footer>
+</body>
+</html>

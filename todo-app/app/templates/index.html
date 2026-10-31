@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <div class="acoes-topo">
+        <a href="{{ url_for('routes.nova_tarefa') }}" class="botao botao-primario">+ Nova tarefa</a>
+    </div>
+
+    {% if tarefas|length == 0 %}
+        <p class="vazio">Nenhuma tarefa cadastrada ainda. Crie a primeira!</p>
+    {% else %}
+        <table class="tabela-tarefas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Vencimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarefa in tarefas %}
+                <tr class="{{ 'concluida' if tarefa.status == 'Concluída' else '' }}">
+                    <td>{{ tarefa.titulo }}</td>
+                    <td>{{ tarefa.descricao or '-' }}</td>
+                    <td>{{ tarefa.data_vencimento.strftime('%d/%m/%Y') if tarefa.data_vencimento else '-' }}</td>
+                    <td><span class="status status-{{ tarefa.status|lower }}">{{ tarefa.status }}</span></td>
+                    <td class="acoes">
+                        <form method="post" action="{{ url_for('routes.concluir_tarefa', tarefa_id=tarefa.id) }}" class="inline">
+                            <button type="submit" class="botao botao-pequeno">
+                                {{ 'Reabrir' if tarefa.status == 'Concluída' else 'Concluir' }}
+                            </button>
+                        </form>
+                        <a href="{{ url_for('routes.editar_tarefa', tarefa_id=tarefa.id) }}" class="botao botao-pequeno">Editar</a>
+                        <form method="post" action="{{ url_for('routes.excluir_tarefa', tarefa_id=tarefa.id) }}" class="inline"
+                              onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                            <button type="submit" class="botao botao-pequeno botao-perigo">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

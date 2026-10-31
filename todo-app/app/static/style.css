@@ -1,0 +1,84 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #222;
+}
+
+header {
+    background: #12312b;
+    color: white;
+    padding: 24px 32px;
+}
+
+header h1 { margin: 0 0 4px 0; font-size: 1.6rem; }
+header p { margin: 0; opacity: .8; font-size: .9rem; }
+
+main {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    color: #888;
+    font-size: .8rem;
+}
+
+.botao {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    color: #222;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+.botao-primario { background: #12805c; color: white; border-color: #12805c; }
+.botao-pequeno { padding: 4px 8px; font-size: .8rem; }
+.botao-perigo { background: #c0392b; color: white; border-color: #c0392b; }
+
+.inline { display: inline-block; margin: 0 2px; }
+
+.acoes-topo { margin-bottom: 16px; }
+
+.tabela-tarefas {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+
+.tabela-tarefas th, .tabela-tarefas td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-tarefas tr.concluida td { color: #999; text-decoration: line-through; }
+
+.status { padding: 2px 8px; border-radius: 12px; font-size: .75rem; }
+.status-pendente { background: #fff3cd; color: #856404; }
+.status-concluída { background: #d4edda; color: #155724; }
+
+.formulario { display: flex; flex-direction: column; max-width: 480px; background: white; padding: 20px; border-radius: 8px; }
+.formulario label { margin-top: 12px; font-weight: bold; font-size: .85rem; }
+.formulario input, .formulario textarea, .formulario select {
+    padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; font-size: .9rem;
+}
+.acoes-form { margin-top: 20px; display: flex; gap: 8px; }
+
+.alerta { padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; font-size: .9rem; }
+.alerta-sucesso { background: #d4edda; color: #155724; }
+.alerta-erro { background: #f8d7da; color: #721c24; }
+
+.vazio { color: #888; font-style: italic; }

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <h2>{{ 'Editar tarefa' if tarefa else 'Nova tarefa' }}</h2>
+
+    <form method="post" class="formulario">
+        <label for="titulo">Título *</label>
+        <input type="text" id="titulo" name="titulo" required
+               value="{{ tarefa.titulo if tarefa else '' }}">
+
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" rows="4">{{ tarefa.descricao if tarefa else '' }}</textarea>
+
+        <label for="data_vencimento">Data de vencimento</label>
+        <input type="date" id="data_vencimento" name="data_vencimento"
+               value="{{ tarefa.data_vencimento.isoformat() if tarefa and tarefa.data_vencimento else '' }}">
+
+        {% if tarefa %}
+        <label for="status">Status</label>
+        <select id="status" name="status">
+            <option value="Pendente" {{ 'selected' if tarefa.status == 'Pendente' else '' }}>Pendente</option>
+            <option value="Concluída" {{ 'selected' if tarefa.status == 'Concluída' else '' }}>Concluída</option>
+        </select>
+        {% endif %}
+
+        <div class="acoes-form">
+            <button type="submit" class="botao botao-primario">Salvar</button>
+            <a href="{{ url_for('routes.index') }}" class="botao">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}
