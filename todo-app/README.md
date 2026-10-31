@@ -81,19 +81,3 @@ status das tarefas (cobrindo o CRUD completo do back-end).
 - [Dicionário de Dados](docs/dicionario_de_dados.md)
 - [Projeto físico do banco (schema.sql)](docs/schema.sql)
 
-## Como publicar no GitHub (passo a passo)
-
-1. Crie uma conta em https://github.com (se ainda não tiver).
-2. Crie um novo repositório (botão **New repository**), por exemplo
-   `pit-engenharia-software-2`. Deixe-o **público**.
-3. No seu computador, dentro da pasta `todo-app`, rode:
-   ```bash
-   git init
-   git add .
-   git commit -m "Primeira versão do Gerenciador de Tarefas"
-   git branch -M main
-   git remote add origin https://github.com/SEU-USUARIO/pit-engenharia-software-2.git
-   git push -u origin main
-   ```
-4. Copie o link do repositório e cole no seu documento de entrega.
-
