@@ -131,3 +131,14 @@ def test_concluir_tarefa_inexistente_retorna_404(client):
 def test_excluir_tarefa_inexistente_retorna_404(client):
     resposta = client.post("/excluir/9999")
     assert resposta.status_code == 404
+
+def test_listar_tarefas_cadastradas(client):
+    client.post("/nova", data={"titulo": "Tarefa para listar"})
+    resposta = client.get("/")
+    assert resposta.status_code == 200
+    assert "Tarefa para listar".encode() in resposta.data
+
+
+def test_url_inexistente_retorna_404(client):
+    resposta = client.get("/pagina-inexistente")
+    assert resposta.status_code == 404
