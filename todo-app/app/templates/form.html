@@ -3,12 +3,14 @@
     <h2>{{ 'Editar tarefa' if tarefa else 'Nova tarefa' }}</h2>
 
     <form method="post" class="formulario">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
         <label for="titulo">Título *</label>
-        <input type="text" id="titulo" name="titulo" required
+        <input type="text" id="titulo" name="titulo" maxlength="120" required
                value="{{ tarefa.titulo if tarefa else '' }}">
 
         <label for="descricao">Descrição</label>
-        <textarea id="descricao" name="descricao" rows="4">{{ tarefa.descricao if tarefa else '' }}</textarea>
+        <textarea id="descricao" name="descricao" rows="4" maxlength="500">{{ tarefa.descricao if tarefa else '' }}</textarea>
 
         <label for="data_vencimento">Data de vencimento</label>
         <input type="date" id="data_vencimento" name="data_vencimento"
