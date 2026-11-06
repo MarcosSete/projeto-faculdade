@@ -1,21 +1,25 @@
-"""
-MODEL (camada de dados)
-Representa a entidade "Tarefa" do banco de dados.
-Corresponde à classe UML "Tarefa" do diagrama de classes do projeto
-(ver docs/diagrama_de_classes.md).
-"""
+"""MODEL: entidade Tarefa."""
 from datetime import datetime
+
+from sqlalchemy import CheckConstraint
+
 from . import db
 
 
 class Tarefa(db.Model):
     __tablename__ = "tarefa"
+    __table_args__ = (
+        CheckConstraint(
+            "status IN ('Pendente', 'Concluída')",
+            name="ck_tarefa_status_valido",
+        ),
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(120), nullable=False)
     descricao = db.Column(db.String(500), nullable=True)
     status = db.Column(db.String(20), nullable=False, default="Pendente")
-    data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
+    data_criacao = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     data_vencimento = db.Column(db.Date, nullable=True)
 
     def to_dict(self):
