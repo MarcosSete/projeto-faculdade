@@ -26,6 +26,7 @@
                     <td><span class="status status-{{ tarefa.status|lower }}">{{ tarefa.status }}</span></td>
                     <td class="acoes">
                         <form method="post" action="{{ url_for('routes.concluir_tarefa', tarefa_id=tarefa.id) }}" class="inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <button type="submit" class="botao botao-pequeno">
                                 {{ 'Reabrir' if tarefa.status == 'Concluída' else 'Concluir' }}
                             </button>
@@ -33,6 +34,7 @@
                         <a href="{{ url_for('routes.editar_tarefa', tarefa_id=tarefa.id) }}" class="botao botao-pequeno">Editar</a>
                         <form method="post" action="{{ url_for('routes.excluir_tarefa', tarefa_id=tarefa.id) }}" class="inline"
                               onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <button type="submit" class="botao botao-pequeno botao-perigo">Excluir</button>
                         </form>
                     </td>
